@@ -9,7 +9,7 @@ word_dict
 
 filename = 'sqlResult_1558435.csv'
 import pandas as pd
-# content = pd.read_csv(filename, encoding='gb18030')
+content = pd.read_csv(filename, encoding='gb18030')
 # content.head()
 
 # articles = content['content'].tolist()
