@@ -137,3 +137,13 @@ def get_summarization_by_sen_emb(text, title, max_len):
 
 import web
 import json
+
+urls = (
+    '/index', 'index',
+    '/(.*)', 'index'
+)
+
+app = web.application(urls, globals())
+
+if __name__ == "__main__":
+    app.run()
