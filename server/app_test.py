@@ -12,15 +12,16 @@ app = web.application(urls, globals())
 
 
 import numpy as np
-word_vector = np.load('./words_vector.npy',allow_pickle= True)
+# TODO:
+# word_vector = np.load('./words_vector.npy',allow_pickle= True)
 word_dict = {}
-for i in range(len(word_vector)):
-    word_dict[word_vector[i][0]]=word_vector[i][1]
-word_dict
+# for i in range(len(word_vector)):
+#     word_dict[word_vector[i][0]]=word_vector[i][1]
+# word_dict
 
 
-filename = 'sqlResult_1558435.csv'
-import pandas as pd
+# filename = 'sqlResult_1558435.csv'
+# import pandas as pd
 # content = pd.read_csv(filename, encoding='gb18030',iterator=True)
 # content=content.get_chunk(10000)
 # content.head()
