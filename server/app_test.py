@@ -12,8 +12,8 @@ import pandas as pd
 # content = pd.read_csv(filename, encoding='gb18030')
 # content.head()
 
-articles = content['content'].tolist()
-titles = content['title'].tolist()
+# articles = content['content'].tolist()
+# titles = content['title'].tolist()
 import re
 def token(string):
     return re.findall('\w+',string)
