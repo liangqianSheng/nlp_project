@@ -9,8 +9,10 @@ word_dict
 
 filename = 'sqlResult_1558435.csv'
 import pandas as pd
-content = pd.read_csv(filename, encoding='gb18030')
-# content.head()
+content = pd.read_csv(filename, encoding='gb18030',iterator=True)
+content=content.get_chunk(10000)
+content.head()
+# print('content',content)
 
 # articles = content['content'].tolist()
 # titles = content['title'].tolist()
