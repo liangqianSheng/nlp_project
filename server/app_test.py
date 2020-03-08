@@ -1,4 +1,16 @@
 # coding:utf-8
+
+import web
+import json
+
+urls = (
+    '/index', 'index',
+    '/(.*)', 'index'
+)
+
+app = web.application(urls, globals())
+
+
 import numpy as np
 word_vector = np.load('./words_vector.npy',allow_pickle= True)
 word_dict = {}
@@ -135,15 +147,7 @@ def get_summarization_by_sen_emb(text, title, max_len):
     return ''.join(sens)
 
 
-import web
-import json
 
-urls = (
-    '/index', 'index',
-    '/(.*)', 'index'
-)
-
-# app = web.application(urls, globals())
 
 # if __name__ == "__main__":
 #     app.run()
