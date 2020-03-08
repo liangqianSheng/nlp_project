@@ -133,3 +133,43 @@ def get_summarization(text, title, score_fn, sum_len):
 def get_summarization_by_sen_emb(text, title, max_len):
     sens = get_summarization(text, title, get_corr, max_len)
     return ''.join(sens)
+
+
+import web
+import json
+
+urls = (
+    '/index', 'index',
+    '/(.*)', 'index'
+)
+
+app = web.application(urls, globals())
+
+class index:
+    def GET(self):
+        web.header("Access-Control-Allow-Origin", "*") # 解决跨域问题
+        query = web.input()
+        content = query.content
+        title = query.title
+        res = get_summarization_by_sen_emb(content, title, 200,100)
+        print('res:',res)
+        
+        return json.dumps({"data":res}) # 解决乱码
+        # return {"data":res.encode(encoding='UTF-8',errors='strict')}
+
+    def POST(self):
+        print('post')
+        web.header("Access-Control-Allow-Origin", "*")
+        web.header('Access-Control-Allow-Credentials', ' true');
+        web.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+        # web.header('Access-Control-Allow-Headers',
+        #            'WWW-Authenticate,Authorization,Set-Cookie,X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version,name');
+        web.header('Access-Control-Allow-Headers',
+                   'Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization');
+
+        data = web.input()
+        return data
+
+
+if __name__ == "__main__":
+    app.run()
