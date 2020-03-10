@@ -1,6 +1,4 @@
 # coding:utf-8
-
-
 import numpy as np
 import pickle
 # word_vector = np.load('./words_vector.npy',allow_pickle= True)
@@ -8,10 +6,7 @@ import pickle
 # for i in range(len(word_vector)):
 #     word_dict[word_vector[i][0]]=word_vector[i][1]
 
-# word_dict = np.load('./words_vector_after.npz',allow_pickle= True)
 word_dict=pickle.load(open('./words_vector_after.txt', 'rb'))
-print('word_dict',type(word_dict))
-# print('word_dict',word_dict)
 
 filename = 'sqlResult_1558435.csv'
 import pandas as pd
@@ -37,7 +32,7 @@ def cut(string):
 # word_frequency
 # word_frequency = np.load('./word_frequency_after.npy',allow_pickle= True)
 word_frequency=pickle.load(open('./word_frequency_after.txt', 'rb'))
-# print('word_frequency',type(word_frequency),word_frequency['的'])
+
 
 
 import re
