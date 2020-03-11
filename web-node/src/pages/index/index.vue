@@ -63,6 +63,12 @@ export default {
   },
   methods: {
     async handleAnaly () {
+      if (!this.title) {
+        return this.$message.error('请输入标题')
+      }
+      if (!this.content) {
+        return this.$message.error('请输入内容')
+      }
       this.timeStep = 200
 
       this.timer = () => setTimeout(() => {
