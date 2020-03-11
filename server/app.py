@@ -8,13 +8,16 @@ import pickle
 
 word_dict=pickle.load(open('./words_vector_after.txt', 'rb'))
 
-filename = 'sqlResult_1558435.csv'
-import pandas as pd
-content = pd.read_csv(filename, encoding='gb18030')
-content.head()
+# filename = 'sqlResult_1558435.csv'
+# import pandas as pd
+# content = pd.read_csv(filename, encoding='gb18030')
+# content.head()
 
-articles = content['content'].tolist()
-titles = content['title'].tolist()
+articles=pickle.load(open('./articles.txt', 'rb'))
+titles=pickle.load(open('./titles.txt', 'rb'))
+
+# articles = content['content'].tolist()
+# titles = content['title'].tolist()
 import re
 def token(string):
     return re.findall('\w+',string)

@@ -19,7 +19,7 @@ for line in (open('word_frequency.txt')):
 # word_frequency
 
 # np.save('word_frequency_after.npy',word_frequency)
-pickle.dump(word_dict,open('word_frequency_after.txt','wb'))
+pickle.dump(word_frequency,open('word_frequency_after.txt','wb'))
 
 # 3
 filename = 'sqlResult_1558435.csv'
