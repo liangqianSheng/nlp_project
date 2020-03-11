@@ -3,4 +3,7 @@ server/*.txt
 server/*.npy
 server/*.npz
 server/*.csv
+server/project_1_version3.ipynb
+server/app_test.py
 */csv
+server/.ipynb_checkpoints/project_1_version3-checkpoint.ipynb

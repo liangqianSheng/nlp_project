@@ -91,7 +91,8 @@ export default {
       //   title: this.title
       // })
       try {
-        const res = await axios.get(`//${location.host}:8080/index`, {
+        const url = `//${location.hostname}:8080/index`
+        const res = await axios.get(url, {
           params: {
             content: this.content,
             title: this.title

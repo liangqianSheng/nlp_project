@@ -140,6 +140,7 @@ def get_summarization_by_sen_emb(text, title, max_len):
 
 
 # text = get_summarization_by_sen_emb(articles[1], titles[1], 200)
+# print(text)
 
 
 
@@ -148,8 +149,7 @@ import web
 import json
 
 urls = (
-    '/index', 'index',
-    '/(.*)', 'index'
+    '/index', 'index'   
 )
 
 app = web.application(urls, globals())
@@ -160,7 +160,7 @@ class index:
         query = web.input()
         content = query.content
         title = query.title
-        res = get_summarization_by_sen_emb(content, title, 200,100)
+        res = get_summarization_by_sen_emb(content, title, 200)
         print('res:',res)
         
         return json.dumps({"data":res}) # 解决乱码
