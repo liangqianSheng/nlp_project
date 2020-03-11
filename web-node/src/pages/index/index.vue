@@ -72,6 +72,10 @@ export default {
       this.timeStep = 200
 
       this.timer = () => setTimeout(() => {
+        if (this.percent >= 99) {
+          clearTimeout(this.timer)
+          return
+        }
         this.percent = this.percent + 1
         if (this.percent > 30) {
           this.timeStep = 250
