@@ -141,3 +141,30 @@ urls = (
 )
 
 app = web.application(urls, globals())
+
+class index:
+    def GET(self):
+        web.header("Access-Control-Allow-Origin", "*") # 解决跨域问题
+        query = web.input()
+        content = query.content
+        title = query.title
+        res = get_summarization_by_sen_emb(content, title, 200)
+        print('res:',res)
+        
+        return json.dumps({"data":res}) # 解决乱码
+
+    def POST(self):
+        print('post')
+        web.header("Access-Control-Allow-Origin", "*")
+        web.header('Access-Control-Allow-Credentials', ' true');
+        web.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+        
+        web.header('Access-Control-Allow-Headers',
+                   'Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization');
+
+        data = web.input()
+        return data
+
+
+if __name__ == "__main__":
+    app.run()
