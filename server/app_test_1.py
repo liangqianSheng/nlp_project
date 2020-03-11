@@ -10,8 +10,8 @@ word_dict=pickle.load(open('./words_vector_after.txt', 'rb'))
 
 
 
-articles=pickle.load(open('./articles.txt', 'rb'))
-titles=pickle.load(open('./titles.txt', 'rb'))
+# articles=pickle.load(open('./articles.txt', 'rb'))
+# titles=pickle.load(open('./titles.txt', 'rb'))
 
 
 import re
@@ -133,3 +133,11 @@ def get_summarization_by_sen_emb(text, title, max_len):
 
 
 
+import web
+import json
+
+urls = (
+    '/index', 'index'   
+)
+
+app = web.application(urls, globals())
