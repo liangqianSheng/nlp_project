@@ -95,7 +95,9 @@ export default {
       //   title: this.title
       // })
       try {
-        const url = `//${location.hostname}:8080/index`
+        const hostname = process.env.NODE_ENV === 'production' ? '47.98.48.249' : location.hostname
+        const url = `//${hostname}:8080/index`
+        console.log('url: ', url)
         const res = await axios.get(url, {
           params: {
             content: this.content,
