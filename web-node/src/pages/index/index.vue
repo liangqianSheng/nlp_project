@@ -96,7 +96,7 @@ export default {
       // })
       try {
         const hostname = process.env.NODE_ENV === 'production' ? '47.98.48.249' : location.hostname
-        const url = `//${hostname}:8080/index`
+        const url = `http://${hostname}:8080/index`
         console.log('url: ', url)
         const res = await axios.get(url, {
           params: {
@@ -104,8 +104,13 @@ export default {
             title: this.title
           }
         })
-        this.result = res.data.data
-        this.status = STATUS.COMPLET
+        if (res.data.code === 1) {
+          this.result = res.data.data
+          this.status = STATUS.COMPLET
+        } else {
+          this.$message.error(res.data.message)
+          this.status = STATUS.COMPLET
+        }
       } catch (e) {
         this.$message.error(JSON.stringify(e.stack))
         this.status = STATUS.COMPLET

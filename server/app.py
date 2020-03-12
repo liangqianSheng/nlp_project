@@ -1,6 +1,7 @@
-# coding:utf-8
+#!/usr/bin/env python
 import numpy as np
 import pickle
+import traceback
 
 
 word_dict=pickle.load(open('./words_vector_after.txt', 'rb'))
@@ -250,13 +251,27 @@ app = web.application(urls, globals())
 class index:
     def GET(self):
         web.header("Access-Control-Allow-Origin", "*") # 解决跨域问题
-        query = web.input()
-        content = query.content
-        title = query.title
-        res = get_summarization_by_sen_emb(content, title, 200)
-        print('res:',res)
         
-        return json.dumps({"data":res}) # 解决乱码
+        try:
+            query = web.input()
+            content = query.content
+            title = query.title
+            res = get_summarization_by_sen_emb(content, title, 200)
+            return json.dumps({'code':1,"data":res}) # 解决乱码
+        except MemoryError:
+            print('error:MemoryError',e)
+            return json.dumps({'code':0,"message":'内存溢出错误'})
+        except RuntimeError as e:
+            print('error:RuntimeError',e)
+            return json.dumps({'code':0,"message":'系统运行时错误'})
+        except BaseException as e:
+            print('error:BaseException',e)
+            return json.dumps({'code':0,"message":'系统错误-1'})
+        except Exception as e:
+            print('error:Exception',e)
+            return json.dumps({'code':0,"message":'系统错误-2'})
+        else:
+            return json.dumps({'code':0,"message":'系统错误-3'})
 
     def POST(self):
         print('post')
