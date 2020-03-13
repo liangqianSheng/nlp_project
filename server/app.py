@@ -259,6 +259,7 @@ class index:
             content = parse.unquote(query.content)
             title = parse.unquote(query.title)
             res = get_summarization_by_sen_emb(content, title, 200)
+            # print('res',res);
             return json.dumps({'code':1,"data":res}) # 解决乱码
         except MemoryError:
             print('error:MemoryError',e)

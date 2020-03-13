@@ -111,11 +111,11 @@ export default {
           this.status = STATUS.COMPLET
         } else {
           this.$message.error(res.data.message)
-          this.status = STATUS.COMPLET
+          this.status = STATUS.READY
         }
       } catch (e) {
         this.$message.error(JSON.stringify(e.stack))
-        this.status = STATUS.COMPLET
+        this.status = STATUS.READY
       }
     }
     // async test () {
