@@ -1,10 +1,12 @@
 #!/usr/bin/env python
 import numpy as np
 import pickle
+from urllib import parse
 import traceback
 
 
-word_dict=pickle.load(open('./words_vector_after.txt', 'rb'))
+word_dict=pickle.load(open('./words_vector_after.txt', 'rb'),encoding="UTF-8")
+# print('word_dict',word_dict)
 
 
 
@@ -237,7 +239,7 @@ def get_summarization_by_sen_emb(text,title,max_len):
 
 # print('origin',articles[5632])
 # text = get_summarization_by_sen_emb(articles[5632],titles[5632],1100)
-# print('text',text)
+
 
 import web
 import json
@@ -254,8 +256,8 @@ class index:
         
         try:
             query = web.input()
-            content = query.content
-            title = query.title
+            content = parse.unquote(query.content)
+            title = parse.unquote(query.title)
             res = get_summarization_by_sen_emb(content, title, 200)
             return json.dumps({'code':1,"data":res}) # 解决乱码
         except MemoryError:

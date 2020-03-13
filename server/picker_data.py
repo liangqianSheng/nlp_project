@@ -1,11 +1,13 @@
+#!/usr/bin/python
 import numpy as np
-word_vector=np.load('words_vector.npy',allow_pickle= True)
+word_vector=np.load('words_vector.npy', allow_pickle= True)
 word_dict = {}
 for i in range(len(word_vector)):
     word_dict[word_vector[i][0]]=word_vector[i][1]
 word_dict
 
 # np.save('words_vector_after.npy',word_dict)
+# print('word_dict',word_dict)
 import pickle
 pickle.dump(word_dict,open('words_vector_after.txt','wb'))
 
@@ -19,6 +21,7 @@ for line in (open('word_frequency.txt')):
 # word_frequency
 
 # np.save('word_frequency_after.npy',word_frequency)
+# print('word_frequency',word_frequency)
 pickle.dump(word_frequency,open('word_frequency_after.txt','wb'))
 
 # 3
