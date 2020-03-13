@@ -96,6 +96,8 @@ export default {
       // })
       try {
         const hostname = process.env.NODE_ENV === 'production' ? '47.98.48.249' : location.hostname
+        // const hostname = process.env.NODE_ENV === 'production' ? '0.0.0.0' : location.hostname
+        console.log('process.env.NODE_ENV: ', process.env.NODE_ENV)
         const url = `http://${hostname}:8080/index`
         console.log('url: ', url)
         const res = await axios.get(url, {
