@@ -95,10 +95,10 @@ export default {
       //   title: this.title
       // })
       try {
-        const hostname = process.env.NODE_ENV === 'production' ? '47.98.48.249' : location.hostname
+        const hostname = process.env.NODE_ENV === 'production' ? 'xiangjiejie.qicp.vip' : 'xiangjiejie.qicp.vip'
         // const hostname = process.env.NODE_ENV === 'production' ? '0.0.0.0' : location.hostname
         console.log('process.env.NODE_ENV: ', process.env.NODE_ENV)
-        const url = `http://${hostname}:8080/index`
+        const url = `http://${hostname}/index`
         console.log('url: ', url)
         const res = await axios.get(url, {
           params: {
