@@ -109,6 +109,7 @@ export default {
         if (res.data.code === 1) {
           this.result = res.data.data
           this.status = STATUS.COMPLET
+          this.$message.success('分析完成')
         } else {
           this.$message.error(res.data.message)
           this.status = STATUS.READY
