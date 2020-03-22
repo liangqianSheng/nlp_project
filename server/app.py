@@ -25,7 +25,7 @@ import re
 
 def split_sentences_2(text,filter_p='\s+'):
     f_p = re.compile(filter_p)
-    sentences = re.split(r"([。!！?？；;，,\\])", text)#处理标点符号
+    sentences = re.split(r"([。!！?？；;，,])", text)#处理标点符号
     revised_sentences=[]
     for sen in sentences:
         #处理特殊标点符号
@@ -42,8 +42,8 @@ def split_sentences_2(text,filter_p='\s+'):
     revised_sentences_2=[]
     #为不以标定符号结尾的小标题添加句号，保证摘要生成的语句连贯；解释：出现2个以上\r\n时，最后一句以外的句子为小标题，最后一句为自然段段首
     for sen in revised_sentences:       
-        if(sen.count("\r\n")>=2):#在后续的句子全文相关度计算中，我们将小标题视为段首
-            delimiter = '\r\n'
+        if(sen.count("\n")>=2):#在后续的句子全文相关度计算中，我们将小标题视为段首
+            delimiter = '\n'
             sen_pieces = [delimiter+k for k in sen.split(delimiter)]
             sen_pieces=sen_pieces[1:]
             for subtitle in sen_pieces[:-1]:
@@ -101,7 +101,7 @@ def get_corr(text,title,embed_fn=SIF_sentence_embedding):
     sub_sentences = split_sentences_2(text) #所有句子集合
     
     for sen in sub_sentences:
-        if '\r\n'in sen:
+        if '\n'in sen:
             paragraph_head_list.append(sub_sentences.index(sen))
         sen=re.sub('\s+','',sen)
         sub_sentences_clean.append(sen)  
@@ -155,10 +155,10 @@ def get_summarization_by_sen_emb(text,title,max_len):
     sens = get_summarization(text,title,get_corr,max_len)
     return ''.join(sens)  
 
-# title = '汤姆·汉克斯晒照报平安 因确诊新冠肺炎隔离中'
-# article='当地时间3月13日，汤姆·汉克斯分享了与妻子丽塔·威尔逊的近照，面带笑容。一天前他透露：两人在澳大利亚确诊感染了新冠肺炎。如今，他按承诺更新了“新冠隔离日记”。汉克斯感谢了他们身边的医护人员，称既然夫妻俩感染了新冠，那就要隔离以免传染给别人，“对于有些人来说，这可能会导致很严重的疾病”。他也再次说到如今是走一步看一步，会遵照专家的建议，照顾好自己和彼此。最后汉克斯引用了他主演的《红粉联盟》台词鼓励大家：“在棒球运动中，没有哭泣！”'
-# text = get_summarization_by_sen_emb(article,title,200)
-# print('text',text)
+title = '国务院常务会议提出抓紧出台普惠金融定向降准措施推动降低融资成本'
+article='新华社北京3月11日电（记者张千千）日前召开的国务院常务会议提出，要抓紧出台普惠金融定向降准措施，并额外加大对股份制银行的降准力度，促进商业银行加大对小微企业、个体工商户贷款支持，帮助复工复产，推动降低融资成本。\n国家金融与发展实验室副主任曾刚表示，出台普惠金融定向降准措施能够为金融机构提供长期资金，降低资金成本，以达到支持实体经济，特别是支持小微企业、个体工商户的目的。\n中国民生银行首席研究员温彬认为，额外加大对股份制银行的降准力度，一方面是由于股份制银行的客户以中小微企业为主，在支持中小微企业方面具有独特优势；另一方面，股份制银行整体面临着负债压力较大、负债成本较高的问题，为股份行提供长期低成本资金有助于其优化负债结构、降低负债成本，更好发挥支持中小微企业的比较优势。\n中国人民银行日前召开电视电话会议指出，在前期已经设立3000亿元疫情防控专项再贷款的基础上，增加再贷款再贴现专用额度5000亿元，同时，下调支农、支小再贷款利率0.25个百分点至2.5%。\n曾刚表示，通过专项再贷款等政策，央行能够向金融机构提供低成本资金，支持金融机构对疫情防控物资保供、农业和企业特别是小微企业提供优惠利率的信贷支持，助力其应对疫情冲击，顺利实现复工复产。\n国务院常务会议提出，要进一步把政策落到位，加快贷款投放进度，更好保障防疫物资保供、春耕备耕、国际供应链产品生产、劳动密集型产业、中小微企业等资金需求。\n此外，会议还提出要有序推动全产业链加快复工复产，引导金融机构主动对接产业链核心企业，加大流动资金贷款支持，给予合理信用额度等。'
+text = get_summarization_by_sen_emb(article,title,200)
+print('text',text)
 
 import web
 import json
