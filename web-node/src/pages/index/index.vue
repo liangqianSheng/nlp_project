@@ -103,11 +103,16 @@ export default {
         const res = await axios.get(url, {
           params: {
             content: this.content,
-            title: this.title
+            title: this.title,
+            size: parseInt(this.content.length * 0.4)
           }
+        }).catch(error => {
+          console.log('error: ', JSON.parse(error))
+          // this.$message.error(error)
         })
         if (res.data.code === 1) {
           this.result = res.data.data
+          console.log('this.result: ', this.result.length)
           this.status = STATUS.COMPLET
           this.$message.success('分析完成')
         } else {
